@@ -40,7 +40,7 @@ abstract class BaseDatabase {
                 break;
 
             case "impulse":
-                target = "usergroup";
+                target = "group";
                 table = "impulse_players";
                 identifier = "steamid";
                 break;
@@ -50,7 +50,7 @@ abstract class BaseDatabase {
                 break;
         }
 
-        this._adminQuery = `SELECT ${target} FROM ${table} WHERE ${identifier} = ?;`;
+        this._adminQuery = `SELECT \`${target}\` FROM ${table} WHERE ${identifier} = ?;`;
         this._target = target;
         this._adminMod = adminMod;
     }
