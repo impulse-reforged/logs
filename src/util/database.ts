@@ -377,9 +377,11 @@ export class MySqlDatabase extends BaseDatabase {
     public async getRank(steamid: string): Promise<string | undefined> {
         const trimmedSteamId = steamid.trim();
         const rankQuery = async (promisePool: any): Promise<string | undefined> => {
-            const [rows] = await promisePool.query(this.adminQuery, [this.userID(trimmedSteamId)]);
+            const resolvedId = this.userID(trimmedSteamId);
+            console.log(`[getRank] query="${this.adminQuery}" id="${resolvedId}"`);
+            const [rows] = await promisePool.query(this.adminQuery, [resolvedId]);
             const firstRow = Array.isArray(rows) ? rows[0] : undefined;
-
+            console.log(`[getRank] rows=${JSON.stringify(rows)}, firstRow=${JSON.stringify(firstRow)}`);
             return firstRow ? firstRow[this.target] : undefined;
         };
 
