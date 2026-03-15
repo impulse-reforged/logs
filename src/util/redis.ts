@@ -5,8 +5,8 @@ const redisClient = createClient({
     url: `redis://${process.env.REDIS_HOST || "localhost"}:${process.env.REDIS_PORT || 6379}`,
     socket: {
         reconnectStrategy: (retries) => {
-            if (retries > 20) {
-                console.error("Redis connection failed after 20 retries");
+            if (retries > 3) {
+                console.error("Redis connection failed after 3 retries, disabling cache");
                 return new Error("Redis connection failed");
             }
             return Math.min(retries * 100, 3000);
