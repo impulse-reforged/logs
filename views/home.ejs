@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,16 +7,60 @@
 
 <body>
   <%- include("partials/header") %>
-  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
+  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3 impulse-page">
+    <div class="impulse-hero mb-4">
+      <div class="impulse-hero__glow"></div>
+      <div class="impulse-hero__content">
+        <div class="impulse-chip">Admin Audit</div>
+        <h1 class="impulse-title">impulse Logs</h1>
+        <p class="impulse-subtitle">A centralized, impulse-themed web panel for reviewing moderation, player, economy, combat, and roleplay logs.</p>
+      </div>
+    </div>
     <% if (!user) { %>
-    <h2>Welcome! Please log in</h2>
+    <div class="card impulse-card mb-4">
+      <div class="card-body">
+        <h2>Welcome. Sign in with Steam to continue.</h2>
+        <p class="mb-0 text-muted">Authorized staff can access the impulse log viewer, search audit history, and review contextual incidents.</p>
+      </div>
+    </div>
     <% } else { %>
-    <h2 id="greeting">Hello, <%= user.displayName %></h2>
+    <div class="card impulse-card mb-4">
+      <div class="card-body">
+        <h2 id="greeting">Hello, <%= user.displayName %></h2>
+        <p class="mb-0 text-muted">Use the navigation above to browse logs, inspect context, and review ticket activity.</p>
+      </div>
+    </div>
     <% } %>
 
-    <p>
-      Welcome to Willard logging system..
-    </p>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card impulse-card impulse-card--compact h-100">
+          <div class="card-body">
+            <div class="section-label">Live Review</div>
+            <h4>Operational Visibility</h4>
+            <p class="mb-0 text-muted">Track staff actions, player behavior, and critical framework events through a consistent audit surface.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card impulse-card impulse-card--compact h-100">
+          <div class="card-body">
+            <div class="section-label">Context</div>
+            <h4>Faster Investigations</h4>
+            <p class="mb-0 text-muted">Inspect surrounding logs, correlate actions by SteamID, and identify patterns quickly.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card impulse-card impulse-card--compact h-100">
+          <div class="card-body">
+            <div class="section-label">Coverage</div>
+            <h4>Framework-Native Logging</h4>
+            <p class="mb-0 text-muted">Supports Helix-style logs and native impulse log storage with shared browsing tools.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <%- include("partials/footer") %> <%- include("partials/scripts") %>

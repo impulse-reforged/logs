@@ -7,15 +7,44 @@
 
 <body>
   <%- include("partials/header") %>
-  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
-    <h2><img src="<%= user.photos && user.photos[2] ? user.photos[2].value : 
+  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3 impulse-page">
+    <div class="card impulse-card impulse-account-card">
+      <div class="card-body">
+        <div class="d-flex flex-column flex-md-row align-items-md-center impulse-account-header">
+          <img class="impulse-account-avatar" src="<%= user.photos && user.photos[2] ? user.photos[2].value : 
                    user.photos && user.photos[1] ? user.photos[1].value :
                    user.photos && user.photos[0] ? user.photos[0].value :
                    user.avatar %>" 
-             alt="Your Avatar Image" /></h2>
-    <h2>ID: <%= user.id %></h2>
-    <h2>Name: <%= user.displayName %></h2>
-    <h2>Rank: <%= rank %></h2>
+             alt="Your Avatar Image" />
+          <div>
+            <div class="section-label">Authorized User</div>
+            <h2 class="mb-1"><%= user.displayName %></h2>
+            <p class="text-muted mb-0">Your Steam profile is authenticated for the impulse logs panel.</p>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-4 mb-3">
+            <div class="impulse-stat-card">
+              <span class="section-label">Steam ID</span>
+              <strong><%= user.id %></strong>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="impulse-stat-card">
+              <span class="section-label">Display Name</span>
+              <strong><%= user.displayName %></strong>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="impulse-stat-card">
+              <span class="section-label">Access Rank</span>
+              <strong><%= rank %></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <%- include("partials/footer") %> <%- include("partials/scripts") %>
 </body>

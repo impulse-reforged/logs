@@ -2,7 +2,7 @@ import { LogEntry } from "../types/logs";
 
 function convertTimestamp(unixTimestamp: number): string {
     const date = new Date(unixTimestamp * 1000);
-    return date.toTimeString().split(' ')[0];
+    return date.toTimeString().split(" ")[0];
 }
 
 function convertSteamID(steam64: string): string {
@@ -18,23 +18,23 @@ function formatLogEntry(entry: LogEntry): string {
     const timestamp = convertTimestamp(entry.datetime);
     
     switch (entry.log_type) {
-        case 'chat':
+        case "chat":
             return `[${timestamp}] ${entry.text}`;
             
-        case 'command':
+        case "command":
             return `[${timestamp}] ${entry.text}`;
             
-        case 'characterUnloaded':
+        case "characterUnloaded":
             return `[${timestamp}] ${entry.text}`;
             
-        case 'connect':
+        case "connect":
             return `[${timestamp}] ${entry.lookup1} has connected.`;
             
-        case 'disconnect':
-            const steamID = entry.steamid ? ` (${convertSteamID(entry.steamid)})` : '';
+        case "disconnect":
+            const steamID = entry.steamid ? ` (${convertSteamID(entry.steamid)})` : "";
             return `[${timestamp}] ${entry.text}${steamID}`;
             
-        case 'characterLoaded':
+        case "characterLoaded":
             return `[${timestamp}] ${entry.lookup1} loaded the character '${entry.lookup2}'`;
             
         default:
@@ -46,5 +46,5 @@ export function formatLogs(logs: LogEntry[]): string {
     return logs
         .filter(log => log.text !== null)  // Filter out logs with no text content
         .map(entry => formatLogEntry(entry))
-        .join('\n');
+        .join("\n");
 }

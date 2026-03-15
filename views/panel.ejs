@@ -146,7 +146,14 @@
 
 <body>
   <%- include("partials/header") %>
-  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
+  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3 impulse-page">
+    <div class="page-header mb-4">
+      <div>
+        <div class="section-label">Search & Investigate</div>
+        <h1 class="mb-1">Log Browser</h1>
+        <p class="text-muted mb-0">Review impulse and Helix-compatible audit records with focused filters and contextual lookup.</p>
+      </div>
+    </div>
     <% 
       function timeConverter(UNIX_timestamp) {
           var isAfternoon = false;
@@ -168,7 +175,8 @@
       }
     %>
 
-    <form id="logForm" action="#" method="GET">
+    <form id="logForm" action="#" method="GET" class="card impulse-card mb-4">
+      <div class="card-body">
       <div class="form-group row">
         <div class="col">
           <input type="text" class="form-control" placeholder="Message" name="text">
@@ -198,15 +206,17 @@
           <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </div>
+      </div>
     </form>
     
     <div class="form-group row">
       <div class="col">
-        <a href="./download-logs" id="downloadBtn" class="btn btn-primary">Download current logs</a>
+        <a href="./download-logs" id="downloadBtn" class="btn btn-primary impulse-btn-secondary">Download current logs</a>
       </div>
     </div>
 
-    <div>
+    <div class="card impulse-card">
+      <div class="card-body">
       <table id="logTable" class="table table-dark table-striped table-bordered dt-responsive" style="width: 100;">
         <colgroup>
           <col class="id" />
@@ -261,6 +271,7 @@
           <% }) %>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 

@@ -21,12 +21,18 @@
 
 <body>
   <%- include("partials/header") %>
-  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3">
+  <div class="container pl-sm-0 pr-sm-0 pl-lg-3 pr-lg-3 impulse-page">
     <div class="row">
       <div class="col-12">
-        <h1 class="mt-4 mb-3">Ticket Statistics</h1>
+        <div class="page-header mt-4 mb-3">
+          <div>
+            <div class="section-label">Staff Analytics</div>
+            <h1 class="mb-1">Ticket Statistics</h1>
+            <p class="text-muted mb-0">Review report-claim activity with the impulse logs visual style.</p>
+          </div>
+        </div>
         
-        <div class="card bg-dark text-white">
+        <div class="card impulse-card text-white">
           <div class="card-body">
             <form class="month-selector" method="GET" action="/ticket-statistics">
               <div class="form-row align-items-center">

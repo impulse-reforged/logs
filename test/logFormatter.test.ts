@@ -1,8 +1,8 @@
-import { formatLogs } from '../src/util/logFormatter';
-import { LogEntry } from '../src/types/logs';
+import { formatLogs } from "../src/util/logFormatter";
+import { LogEntry } from "../src/types/logs";
 
-describe('Log Formatter', () => {
-    test('formats chat logs correctly', () => {
+describe("Log Formatter", () => {
+    test("formats chat logs correctly", () => {
         const input: LogEntry[] = [{
             id: 46506098,
             steamid: "76561198236432500",
@@ -23,7 +23,7 @@ describe('Log Formatter', () => {
         expect(result).toMatch(/^\[\d{2}:\d{2}:\d{2}\] \[IC\] Casey Sanchez: Black coral looks nice\.$/);
     });
 
-    test('formats command logs correctly', () => {
+    test("formats command logs correctly", () => {
         const input: LogEntry[] = [{
             id: 46506097,
             steamid: "76561198264303356",
@@ -44,7 +44,7 @@ describe('Log Formatter', () => {
         expect(result).toMatch(/^\[\d{2}:\d{2}:\d{2}\] C8:i1\.UNION-1 used command '\/Radio 10-7'\.$/);
     });
 
-    test('formats character unload logs correctly', () => {
+    test("formats character unload logs correctly", () => {
         const input: LogEntry[] = [{
             id: 46506096,
             steamid: "76561198072614188",
@@ -65,7 +65,7 @@ describe('Log Formatter', () => {
         expect(result).toMatch(/^\[\d{2}:\d{2}:\d{2}\] Bounter has unloaded their "Tadeusz Wachnicki" character\.$/);
     });
 
-    test('formats multiple logs correctly', () => {
+    test("formats multiple logs correctly", () => {
         const input: LogEntry[] = [
             {
                 id: 1,
@@ -100,7 +100,7 @@ describe('Log Formatter', () => {
         ];
 
         const result = formatLogs(input);
-        const lines = result.split('\n');
+        const lines = result.split("\n");
         expect(lines).toHaveLength(2);
         expect(lines[0]).toMatch(/^\[\d{2}:\d{2}:\d{2}\] TestPlayer has connected\.$/);
         expect(lines[1]).toMatch(/^\[\d{2}:\d{2}:\d{2}\] TestPlayer \(STEAM_0:0:138083386\)$/);

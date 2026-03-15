@@ -1,5 +1,5 @@
-# Helix Logs
-A logger for the Helix roleplaying framework written in Node.js with Typescript.
+﻿# Helix Logs
+A logger browser for the Helix and impulse roleplaying frameworks written in Node.js with Typescript.
 
 ![demo](https://i.imgur.com/bEDbdJe.gif)
 
@@ -7,11 +7,12 @@ A logger for the Helix roleplaying framework written in Node.js with Typescript.
 - Steam login
 - Usergroup whitelist
 - MySQL and SQLite support
-- SAM, Serverguard and ULX support
+- SAM, Serverguard, ULX and impulse native admin support
 - Search filters
   - Messages
   - Before and after dates
   - Steam ID's
+- Native impulse log table support
 - HTTP and HTTPS support
 - Mobile friendly
 - Download logs contextually
@@ -20,11 +21,14 @@ A logger for the Helix roleplaying framework written in Node.js with Typescript.
 - Contextual logs
 
 # Requirements
-- [Node.js](https://nodejs.org/en/)
-- [Helix](https://github.com/NebulousCloud/helix) updated since May 11th, 2021
-- [SQL Helix Plugin](https://github.com/wildflowericecoffee/helix-plugins/tree/main/logger.lua)
-- [Redis](https://redis.io/)
-- An admin addon. SAM, ServerGuard and ULX are supported.
+- **Node.js 20+** (includes npm).
+- **MySQL/MariaDB** with access to your framework tables (Helix tables or impulse log tables).
+- **Steam Web API key** (for Steam OAuth login).
+- **Admin source compatibility**: `ulx`, `serverguard`, `sam`, or `impulse`.
+- **Framework/log source**:
+  - Helix + SQL logger plugin, or
+  - native impulse log table support.
+- **Redis** recommended for production deployments.
 
 # Getting started
 - Clone the repository
@@ -36,6 +40,13 @@ git clone --depth=1 https://github.com/willardnetworks/logs.git <project_name>
 cd <project_name>
 npm install
 ```
+This installs runtime packages and build tooling used by this project (`typescript`, `ts-node`, `sass`, `eslint`).
+
+- Build the app
+```
+npm run build
+```
+
 - Configuration
 
 Rename the `.env.example` file to `.env` and fill out the environment variables
@@ -48,10 +59,12 @@ Rename the `.env.example` file to `.env` and fill out the environment variables
 | PORT                                            	| The port your server listens on.                                                                                       	|
 | SSL (true/false)                                	| Whether you want the server to use HTTPS, you will need this if you have your SSL mode to full (strict) in cloudflare. 	|
 | SSL_CERT, SSL_KEY                                 | The absolute path of your SSL certificate and key if you are using HTTPS. You can create these with openssl.            |
-| DATABASE (mysql)                         	        | What type of database you have.                                                                                        	|
+| DATABASE (mysql)                        	        | What type of database you have.                                                                                        	|
 | MYSQL_USER, MYSQL_PASS,<br>MYSQL_HOST, MYSQL_DB 	| Login credentials for mysql.                                                                                           	|
 | MYSQL_SAM                                       	| The database name for SAM.                                                                                          	  |
-| ADMIN_MOD (serverguard/ulx)                     	| The admin mod your server uses, currently only ULX and Serverguard are supported.                                      	|
+| LOG_FRAMEWORK (auto/helix/impulse)             	  | Which log schema to read. `auto` will detect impulse tables first, then fall back to Helix.                          	  |
+| IMPULSE_LOG_TABLE                              	  | Optional override for the impulse log table name. Default is `impulse_logs`.                                          	|
+| ADMIN_MOD (serverguard/ulx/sam/impulse)           | The admin system your server uses. For impulse, rank lookup uses `impulse_players.usergroup` with SteamID64.            |
 | STEAM_KEY                                       	| Steam API key, get yours at https://steamcommunity.com/dev/apikey.                                                     	|
 | ALLOWED_RANKS                                   	| List of allowed usergroups that can access the server logs, separated by semicolons.                                   	|
 - Build and run the project
@@ -64,7 +77,7 @@ Finally, navigate to `http://localhost:3000` and you should see the template bei
 
 # Deployment
 To deploy the app to a web server, simply set it to production and add your own website domain.
-> IP addresses work too, but you should use a domain to be able to use Cloudflare's DDoS protection).
+> IP addresses work too, but you should use a domain to be able to use Cloudflare's DDoS protection.
 
 SSL is strongly recommended, you can combine Cloudflare's full (strict) HTTPS with a self signed certificate using openssl for full end-to-end encryption.
 
