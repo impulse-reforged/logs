@@ -51,22 +51,22 @@ npm run build
 
 Rename the `.env.example` file to `.env` and fill out the environment variables
 
-| Environment Variable                            	| Description                                                                                                            	|
-|-------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------	|
-| NODE_ENV (production/dev)                       	| Whether we are running in development or production. Enables error logger and sets the domain to localhost in dev.     	|
-| SESSION_SECRET                                  	| Secret used for keeping sessions. You should use a random generator for this.                                          	|
-| WEBSITE_DOMAIN                                  	| Your website's domain, used for redirecting to steam.                                                                  	|
-| PORT                                            	| The port your server listens on.                                                                                       	|
-| SSL (true/false)                                	| Whether you want the server to use HTTPS, you will need this if you have your SSL mode to full (strict) in cloudflare. 	|
+| Environment Variable                                | Description                                                                                                                |
+|-------------------------------------------------    |------------------------------------------------------------------------------------------------------------------------    |
+| NODE_ENV (production/dev)                           | Whether we are running in development or production. Enables error logger and sets the domain to localhost in dev.         |
+| SESSION_SECRET                                      | Secret used for keeping sessions. You should use a random generator for this.                                              |
+| WEBSITE_DOMAIN                                      | Your website's domain, used for redirecting to steam.                                                                      |
+| PORT                                                | The port your server listens on.                                                                                           |
+| SSL (true/false)                                    | Whether you want the server to use HTTPS, you will need this if you have your SSL mode to full (strict) in cloudflare.     |
 | SSL_CERT, SSL_KEY                                 | The absolute path of your SSL certificate and key if you are using HTTPS. You can create these with openssl.            |
-| DATABASE (mysql)                        	        | What type of database you have.                                                                                        	|
-| MYSQL_USER, MYSQL_PASS,<br>MYSQL_HOST, MYSQL_DB 	| Login credentials for mysql.                                                                                           	|
-| MYSQL_SAM                                       	| The database name for SAM.                                                                                          	  |
-| LOG_FRAMEWORK (auto/helix/impulse)             	  | Which log schema to read. `auto` will detect impulse tables first, then fall back to Helix.                          	  |
-| IMPULSE_LOG_TABLE                              	  | Optional override for the impulse log table name. Default is `impulse_logs`.                                          	|
+| DATABASE (mysql)                                    | What type of database you have.                                                                                            |
+| MYSQL_USER, MYSQL_PASS,<br>MYSQL_HOST, MYSQL_DB     | Login credentials for mysql.                                                                                               |
+| MYSQL_SAM                                           | The database name for SAM.                                                                                                |
+| LOG_FRAMEWORK (auto/helix/impulse)                   | Which log schema to read. `auto` will detect impulse tables first, then fall back to Helix.                                |
+| IMPULSE_LOG_TABLE                                    | Optional override for the impulse log table name. Default is `impulse_logs`.                                              |
 | ADMIN_MOD (serverguard/ulx/sam/impulse)           | The admin system your server uses. For impulse, rank lookup uses `impulse_players.usergroup` with SteamID64.            |
-| STEAM_KEY                                       	| Steam API key, get yours at https://steamcommunity.com/dev/apikey.                                                     	|
-| ALLOWED_RANKS                                   	| List of allowed usergroups that can access the server logs, separated by semicolons.                                   	|
+| STEAM_KEY                                           | Steam API key, get yours at https://steamcommunity.com/dev/apikey.                                                         |
+| ALLOWED_RANKS                                       | List of allowed usergroups that can access the server logs, separated by semicolons.                                       |
 - Build and run the project
 ```
 npm run build
